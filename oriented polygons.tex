@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+%		3-GON
+
+\tikzset{->-/.style n args={2}{decoration={
+  markings,
+  mark=at position #1 with {\arrow{#2}}},postaction={decorate}}}
+
+% The bullet modifier is creating the points at each node
+\begin{tikzpicture}[bullet/.style={circle,inner sep=1.5pt,fill}]
+	
+	% Computes y-coordinate of A since non integral	
+	\pgfmathsetmacro\result{sqrt(3)} 
+	% Path itself does not draw anything- the foreach does that
+	\path	(1,\result) node[bullet,label=above:$A$](A){}
+  			(0,0) node[bullet,label=below:$B$](B) {}
+  			(2,0) node[bullet,label=below:$C$](C) {};
+  
+	% The "\X/\Y/\Z" format means changing three variables
+	% at once.
+  	\foreach \X/\Arrow/\tiploc[remember=\X as \LastX (initially C)]	in {A/stealth/.5,B/stealth/.58,C/stealth/.55} {\draw[line width=1pt,->-={\tiploc}{\Arrow}](\LastX) -- (\X);}
+
+\end{tikzpicture}
+
+
+\end{document}
