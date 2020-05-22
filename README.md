@@ -1,4 +1,4 @@
 # tikz
 
-adsfkjlakdsfasdf
-adfads
+## Shapes
+Sphere, oriented polygons (regular, with arrows
